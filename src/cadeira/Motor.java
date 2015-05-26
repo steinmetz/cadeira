@@ -5,10 +5,45 @@
  */
 package cadeira;
 
+import cadeira.util.Log;
+
 /**
  *
  * @author charles
  */
 public class Motor {
+    private float velocidade;
+    private float torque;
+    
+    private String tag;
+
+    public Motor(String tag) {
+        this.tag = tag;
+    }
+    
+    public void frente(){
+        Log.log(tag, "Andando para frente");
+    }
+    public void tras(){
+        Log.log(tag, "Andando para tras");
+    }
+
+    public float getVelocidade() {
+        return velocidade;
+    }
+
+    public void setVelocidade(float velocidade) {
+        this.velocidade = velocidade;
+    }
+
+    public float getTorque() {
+        return torque;
+    }
+
+    public void setTorque(float torque) {
+        this.torque = torque;
+    }
+    
+    
     
 }

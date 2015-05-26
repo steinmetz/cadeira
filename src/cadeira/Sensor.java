@@ -9,6 +9,25 @@ package cadeira;
  *
  * @author charles
  */
-interface Sensor {
-    public float obterValor();
+abstract class Sensor {  
+    
+    protected float valor;
+    protected boolean simulacao = true;
+ 
+     public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
+
+    public boolean isSimulacao() {
+        return simulacao;
+    }
+
+    public void setSimulacao(boolean simulacao) {
+        this.simulacao = simulacao;
+    }
+    
 }

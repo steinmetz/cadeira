@@ -3,7 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/charles/NetBeansProjects/Cadeira/src/cadeira/Cadeira.java</file>
+            <file>file:/home/charles/NetBeansProjects/cadeira/src/cadeira/Joystick.java</file>
+            <file>file:/home/charles/NetBeansProjects/cadeira/src/cadeira/Motor.java</file>
+            <file>file:/home/charles/NetBeansProjects/cadeira/src/cadeira/Sensor.java</file>
+            <file>file:/home/charles/NetBeansProjects/cadeira/src/cadeira/InterfaceUsuario.java</file>
+            <file>file:/home/charles/NetBeansProjects/cadeira/src/cadeira/Bateria.java</file>
+            <file>file:/home/charles/NetBeansProjects/cadeira/src/cadeira/SensorBatCardiacos.java</file>
+            <file>file:/home/charles/NetBeansProjects/cadeira/src/cadeira/GerenciadorRotas.java</file>
+            <file>file:/home/charles/NetBeansProjects/cadeira/src/cadeira/SensorTemperatura.java</file>
+            <file>file:/home/charles/NetBeansProjects/cadeira/src/cadeira/Ponto.java</file>
+            <file>file:/home/charles/NetBeansProjects/cadeira/src/cadeira/ProcessamentoImagem.java</file>
+            <file>file:/home/charles/NetBeansProjects/cadeira/src/cadeira/SensorDistancia.java</file>
+            <file>file:/home/charles/NetBeansProjects/cadeira/src/cadeira/Cadeira.java</file>
         </group>
     </open-files>
 </project-private>

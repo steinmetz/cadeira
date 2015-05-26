@@ -3,22 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cadeira;
-
-import java.util.ArrayList;
+package cadeira.util;
 
 /**
  *
  * @author charles
  */
-public class GerenciadorRotas {
-     
-    private ArrayList<Ponto> pontosRecarga;
-    
-    public GerenciadorRotas(){
-        pontosRecarga = new ArrayList<>();
+public class Log {
+    public static void log(String tag, String msg){
+        System.out.println("["+tag+"] "+msg);
     }
     
-     
-
 }
