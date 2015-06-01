@@ -14,23 +14,47 @@ import cadeira.util.RandomUtil;
 public class SensorBatCardiacos extends Sensor{
  
     @Override
+    public void run() { 
+        while (run) {
+            valor=  getValor(); 
+            
+            if(valor < 60){
+                alerta = true;
+                msgAlerta = "Batimentos abaixo do limite";
+            } else if(valor > 90){
+                alerta = true;
+                msgAlerta = "Batimentos acima do limite";
+            } else {
+                alerta = false;
+                msgAlerta = "Batimentos cardíacos OK";
+            }
+            try {
+                Thread.sleep(500);
+            } catch (Exception e) {
+            }
+            super.run();
+        }
+    }
+    
+    
+    @Override
     public float getValor() {
         
         /*
             parte usada para randomizar valores cardíacos
         */
         if (simulacao) {
-            int[] valores = new int[100];
-            for (int i = 0; i < 80; i++) {
-                valores[i] = 37;
+            int[] valores = new int[1000];
+            for (int i = 0; i < 880; i++) {
+                valores[i] = RandomUtil.randInt(60, 90);
             }
-            for (int i = 79; i < 90; i++) {
-                valores[i] = 37;
+            for (int i = 879; i < 930; i++) {
+                valores[i] = RandomUtil.randInt(40, 59);
             }
-            for (int i = 89; i < 100; i++) {
-                valores[i] = 40;
+            for (int i = 929; i < 1000; i++) {
+                valores[i] = RandomUtil.randInt(91, 120);
             }
-            return valores[RandomUtil.randInt(0, 100)];
+            return valores[RandomUtil.randInt(0, 999)];
         } 
         return valor;
     }

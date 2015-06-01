@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  *
  * @author charles
  */
-public class Bateria {
+public class Bateria extends Thread{
     
     private float carga;
     //distância que a cadeira percorre por unidade de carga.
@@ -59,7 +59,7 @@ public class Bateria {
             }
         };
         Thread t = new Thread(run);
-        t.start();
+        t.start(); 
     }
 
     public boolean isConsumindo() {

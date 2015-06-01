@@ -5,16 +5,33 @@
  */
 package cadeira;
 
+import cadeira.util.Log;
+
 /**
  *
  * @author charles
  */
-abstract class Sensor {  
+abstract class Sensor extends Thread {  
     
     protected float valor;
     protected boolean simulacao = true;
+    
+    public boolean alerta = false;
+    public String msgAlerta = "";
+    protected boolean run = true;
+
+    @Override
+    public void run() {
+        if (alerta) {
+            Log.log("Sensor", msgAlerta + "[valor:"+valor+"]");
+        }
+    } 
+     
+    public void finish(){
+        run = false;
+    }
  
-     public float getValor() {
+    public float getValor() {
         return valor;
     }
 

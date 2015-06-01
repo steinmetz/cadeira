@@ -12,8 +12,25 @@ import cadeira.util.RandomUtil;
  * @author charles
  */
 public class SensorDistancia extends Sensor{
- 
-    
+
+    @Override
+    public void run() { 
+        while (run) {
+            valor=  getValor();
+            
+            if(valor < 10){
+                alerta = true;
+                msgAlerta = "Obstáculo detectado";
+            }else {
+                alerta = false;
+                msgAlerta = "";
+            } 
+            try {
+                Thread.sleep(500);
+            } catch (Exception e) {
+            }
+        }
+    }
     
     
      @Override
@@ -24,15 +41,9 @@ public class SensorDistancia extends Sensor{
         */
         if (simulacao) {
             int[] valores = new int[1000];
-            for (int i = 0; i < 880; i++) {
-                valores[i] = RandomUtil.randInt(60, 90);
-            }
-            for (int i = 879; i < 930; i++) {
-                valores[i] = RandomUtil.randInt(40, 59);
-            }
-            for (int i = 929; i < 1000; i++) {
-                valores[i] = RandomUtil.randInt(91, 120);
-            }
+            for (int i = 0; i < 999; i++) {
+                valores[i] = RandomUtil.randInt(2, 500);
+            } 
             return valores[RandomUtil.randInt(0, 999)];
         } 
         return valor;

@@ -23,15 +23,15 @@ public class Cadeira {
     
     public static void main(String[] args) {
         boolean rodando = true;
-        Cadeira cadeira = new Cadeira();
-        
+        Cadeira cadeira = new Cadeira();         
         cadeira.showMenu();
         while(rodando){           
             String comando = cadeira.interfaceUsr.lerComandoUsr();
             if(!comando.toLowerCase().equals("ligar") && !cadeira.ligado) continue;
             switch(comando.toLowerCase()){
                 case "ligar":
-                    cadeira.ligar();
+                    if(!cadeira.ligado)
+                        cadeira.ligar();
                     break;
                 case "desligar":
                     cadeira.desligar(); 
@@ -74,9 +74,6 @@ public class Cadeira {
          System.out.println(bateria.toString());
     }
     public Cadeira(){
-        sTemperatura = new SensorTemperatura();
-        sBatCardiacos = new SensorBatCardiacos();
-        sDistancia = new SensorDistancia();
         interfaceUsr = new InterfaceUsuario();
         motorD = new Motor("Motor D");
         motorE = new Motor("Motor E");
@@ -90,11 +87,20 @@ public class Cadeira {
         Log.log(tag, "Cadeira ligada");
         bateria.setConsumindo(ligado);
         bateria.setConsumo((float) 0.01);
+        sTemperatura = new SensorTemperatura();
+        sBatCardiacos = new SensorBatCardiacos();
+        sDistancia = new SensorDistancia();
+        sTemperatura.start();
+        sDistancia.start();
+        sBatCardiacos.start();
     }
     public void desligar(){
         ligado = false;
         Log.log(tag, "Cadeira desligada");
         bateria.setConsumindo(ligado);
+        sTemperatura.finish();
+        sDistancia.finish();
+        sBatCardiacos.finish();
     } 
     public void andarFrente(){  
         Log.log(tag, "Andar para Frente");

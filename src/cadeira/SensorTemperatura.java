@@ -13,22 +13,41 @@ import cadeira.util.RandomUtil;
  */
 public class SensorTemperatura extends Sensor{
 
+    @Override
+    public void run() { 
+        while (run) {
+            valor=  getValor();
+            if(valor < 36){
+                alerta = true;
+                msgAlerta = "Temperatura corporal abaixo do limite";
+            } else if(valor > 38){
+                alerta = true;
+                msgAlerta = "Temperatura corporal acima do limite";
+            } else {
+                alerta = false;
+                msgAlerta = "Temperatura corporal OK";
+            }
+            try {
+                Thread.sleep(500);
+            } catch (Exception e) {
+            }
+        }
+    }
+    
+    
      @Override
     public float getValor() {
-        
-        /*
-            parte usada para randomizar valores cardíacos
-        */
+         
         if (simulacao) {
             int[] valores = new int[1000];
             for (int i = 0; i < 880; i++) {
-                valores[i] = RandomUtil.randInt(60, 90);
+                valores[i] = RandomUtil.randInt(36, 38);
             }
             for (int i = 879; i < 930; i++) {
-                valores[i] = RandomUtil.randInt(40, 59);
+                valores[i] = RandomUtil.randInt(39, 40);
             }
             for (int i = 929; i < 1000; i++) {
-                valores[i] = RandomUtil.randInt(91, 120);
+                valores[i] = RandomUtil.randInt(20, 35);
             }
             return valores[RandomUtil.randInt(0, 999)];
         } 
