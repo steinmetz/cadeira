@@ -29,7 +29,7 @@ public class SensorBatCardiacos extends Sensor{
                 msgAlerta = "Batimentos cardíacos OK";
             }
             try {
-                Thread.sleep(500);
+                Thread.sleep(1000);
             } catch (Exception e) {
             }
             super.run();
