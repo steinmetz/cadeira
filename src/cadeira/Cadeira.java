@@ -1,6 +1,7 @@
 package cadeira;
 
-import cadeira.util.Log; 
+import cadeira.util.Log;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -16,32 +17,37 @@ public class Cadeira {
     private Motor motorE;
     private Bateria bateria;
     private Camera camera;
-    
-    private boolean ligado = false;    
+    private Usuario usuario;
+
+    private boolean ligado = false;
     private String tag = "Cadeira";
-    private Ponto posicao ;
-    
+    private Ponto posicao;
+
     public static void main(String[] args) {
+
         boolean rodando = true;
-        Cadeira cadeira = new Cadeira();         
+        Cadeira cadeira = new Cadeira();
         cadeira.showMenu();
-        while(rodando){           
+        while (rodando) {
             String comando = cadeira.interfaceUsr.lerComandoUsr();
-            if(!comando.toLowerCase().equals("ligar") && !cadeira.ligado) continue;
-            switch(comando.toLowerCase()){
+            if (!comando.toLowerCase().equals("ligar") && !cadeira.ligado) {
+                continue;
+            }
+            switch (comando.toLowerCase()) {
                 case "ligar":
-                    if(!cadeira.ligado)
+                    if (!cadeira.ligado) {
                         cadeira.ligar();
+                    }
                     break;
                 case "desligar":
-                    cadeira.desligar(); 
+                    cadeira.desligar();
                     break;
                 case "frente":
                     cadeira.andarFrente();
-                    break;    
+                    break;
                 case "tras":
                     cadeira.andarTras();
-                    break; 
+                    break;
                 case "direita":
                     cadeira.andarDireita();
                     break;
@@ -56,11 +62,11 @@ public class Cadeira {
                     System.err.println("Comando inválido!");
                     cadeira.showMenu();
                     break;
-            } 
-        }        
+            }
+        }
     }
-    
-    private void showMenu(){
+
+    private void showMenu() {
         System.out.println("Comandos válidos são:");
         System.out.println("'ligar'     para ligar");
         System.out.println("'desligar'  para desligar");
@@ -70,63 +76,83 @@ public class Cadeira {
         System.out.println("'direita'   para andar para direita");
         System.out.println("'esquerda'  para andar para esquerda");
     }
-    public void showStatus(){
-         System.out.println(bateria.toString());
+
+    public void showStatus() {
+        System.out.println(bateria.toString());
     }
-    public Cadeira(){
+
+    public Cadeira() {
         interfaceUsr = new InterfaceUsuario();
         motorD = new Motor("Motor D");
         motorE = new Motor("Motor E");
         bateria = new Bateria(100);
         camera = new Camera();
-        posicao = new Ponto();        
+        posicao = new Ponto();
     }
     
-    public void ligar(){
-        ligado = true;
-        Log.log(tag, "Cadeira ligada");
-        bateria.setConsumindo(ligado);
-        bateria.setConsumo((float) 0.01);
-        sTemperatura = new SensorTemperatura();
-        sBatCardiacos = new SensorBatCardiacos();
-        sDistancia = new SensorDistancia();
-        sTemperatura.start();
-        sDistancia.start();
-        sBatCardiacos.start();
+    public void ligar() {
+        if (usuario != null) { 
+            ligado = true;
+            Log.log(tag, "Cadeira ligada");
+            bateria.setConsumindo(ligado);
+            bateria.setConsumo((float) 0.01);
+            sTemperatura = new SensorTemperatura(usuario);
+            sBatCardiacos = new SensorBatCardiacos(usuario);
+            sDistancia = new SensorDistancia(usuario);
+            sTemperatura.start();
+            sDistancia.start();
+            sBatCardiacos.start();
+        } else {
+            System.out.println("Não existe usuário na cadeira.");            
+        }
     }
-    public void desligar(){
+
+    public void criarUsuario(){
+        usuario = new Usuario();
+        usuario.criarUsuario();
+    }
+    
+    public void setUsuario(Usuario usuario){
+        this.usuario = usuario;
+    }
+    
+    public void desligar() {
         ligado = false;
         Log.log(tag, "Cadeira desligada");
         bateria.setConsumindo(ligado);
         sTemperatura.finish();
         sDistancia.finish();
         sBatCardiacos.finish();
-    } 
-    public void andarFrente(){  
+    }
+
+    public void andarFrente() {
         Log.log(tag, "Andar para Frente");
         motorD.frente();
         motorE.frente();
-        bateria.descarregando((float)0.5);
+        bateria.descarregando((float) 0.5);
         posicao.incrementarX(5);
     }
-    public void andarTras(){
+
+    public void andarTras() {
         Log.log(tag, "Andar para Tras");
         motorD.tras();
         motorE.tras();
-        bateria.descarregando((float)0.5);
+        bateria.descarregando((float) 0.5);
         posicao.incrementarX(-5);
     }
-    public void andarDireita(){
+
+    public void andarDireita() {
         Log.log(tag, "Virar Direita");
         motorE.frente();
         motorD.tras();
-        bateria.descarregando((float)0.5); 
+        bateria.descarregando((float) 0.5);
     }
-    public void andarEsquerda(){
+
+    public void andarEsquerda() {
         Log.log(tag, "Virar Esquerda");
         motorD.frente();
         motorE.tras();
-        bateria.descarregando((float)0.5); 
+        bateria.descarregando((float) 0.5);
     }
 
     public SensorTemperatura getsTemperatura() {
@@ -216,9 +242,5 @@ public class Cadeira {
     public void setPosicao(Ponto posicao) {
         this.posicao = posicao;
     }
-    
-    
-    
-    
-    
+
 }

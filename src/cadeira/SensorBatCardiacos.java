@@ -12,16 +12,21 @@ import cadeira.util.RandomUtil;
  * @author charles
  */
 public class SensorBatCardiacos extends Sensor{
+    
+     public SensorBatCardiacos(Usuario usuario){
+        super(usuario);
+    }
+
  
     @Override
     public void run() { 
         while (run) {
             valor=  getValor(); 
             
-            if(valor < 60){
+            if(valor < usuario.getBatimentosMin()){
                 alerta = true;
                 msgAlerta = "Batimentos abaixo do limite";
-            } else if(valor > 90){
+            } else if(valor > usuario.getBatimentosMax()){
                 alerta = true;
                 msgAlerta = "Batimentos acima do limite";
             } else {

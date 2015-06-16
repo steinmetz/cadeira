@@ -12,6 +12,10 @@ import cadeira.util.RandomUtil;
  * @author charles
  */
 public class SensorDistancia extends Sensor{
+    
+    public SensorDistancia(Usuario usuario){
+        super(usuario);
+    }
 
     @Override
     public void run() { 

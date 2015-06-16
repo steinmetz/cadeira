@@ -19,7 +19,13 @@ abstract class Sensor extends Thread {
     public boolean alerta = false;
     public String msgAlerta = "";
     protected boolean run = true;
+    
+    protected Usuario usuario;
 
+    public Sensor(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
     @Override
     public void run() {
         if (alerta) {

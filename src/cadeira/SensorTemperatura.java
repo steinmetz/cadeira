@@ -12,15 +12,19 @@ import cadeira.util.RandomUtil;
  * @author charles
  */
 public class SensorTemperatura extends Sensor{
+    
+    public SensorTemperatura(Usuario usuario){
+        super(usuario);
+    }
 
     @Override
     public void run() { 
         while (run) {
             valor=  getValor();
-            if(valor < 36){
+            if(valor < usuario.getTemperaturaMin()){
                 alerta = true;
                 msgAlerta = "Temperatura corporal abaixo do limite";
-            } else if(valor > 38){
+            } else if(valor > usuario.getTemperaturaMax()){
                 alerta = true;
                 msgAlerta = "Temperatura corporal acima do limite";
             } else {
@@ -28,7 +32,7 @@ public class SensorTemperatura extends Sensor{
                 msgAlerta = "Temperatura corporal OK";
             }
             try {
-                Thread.sleep(500);
+                Thread.sleep(1000);
             } catch (Exception e) {
             }
         }
