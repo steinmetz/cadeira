@@ -20,7 +20,7 @@ public class SensorTemperatura extends Sensor{
     @Override
     public void run() { 
         while (run) {
-            valor=  getValor();
+            valor=  randValor();
             if(valor < usuario.getTemperaturaMin()){
                 alerta = true;
                 msgAlerta = "Temperatura corporal abaixo do limite";
@@ -37,10 +37,9 @@ public class SensorTemperatura extends Sensor{
             }
         }
     }
-    
-    
+     
      @Override
-    public float getValor() {
+    protected float randValor() {
          
         if (simulacao) {
             int[] valores = new int[1000];

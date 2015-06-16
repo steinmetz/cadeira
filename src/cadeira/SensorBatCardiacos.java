@@ -21,7 +21,7 @@ public class SensorBatCardiacos extends Sensor{
     @Override
     public void run() { 
         while (run) {
-            valor=  getValor(); 
+            valor=  randValor(); 
             
             if(valor < usuario.getBatimentosMin()){
                 alerta = true;
@@ -43,7 +43,7 @@ public class SensorBatCardiacos extends Sensor{
     
     
     @Override
-    public float getValor() {
+    public float randValor() {
         
         /*
             parte usada para randomizar valores cardíacos

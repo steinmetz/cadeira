@@ -102,6 +102,7 @@ public class TelaInical extends javax.swing.JFrame {
         label6.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label6.setText("Tipo de Usuário");
 
+        lblStatusBateria.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lblStatusBateria.setForeground(new java.awt.Color(255, 0, 0));
         lblStatusBateria.setName(""); // NOI18N
 
@@ -321,7 +322,7 @@ public class TelaInical extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(14, 14, 14)
                 .addComponent(pControls, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         lblCadeira.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cadeira/jframes/images.jpg"))); // NOI18N
@@ -353,7 +354,7 @@ public class TelaInical extends javax.swing.JFrame {
                     .addComponent(jInternalFrame1))
                 .addGap(64, 64, 64)
                 .addComponent(lblCadeira)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         pack();
